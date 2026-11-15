@@ -92,14 +92,17 @@ Configured adapters: Vitest, Playwright, Go, and Pytest.
 
 ## Terminal
 
+The default ToggleTerm opens as a vertical split on the right. Use `<C-h>` from the terminal to return to the editor and `<C-l>` from the editor to focus the terminal; focusing a terminal window resumes terminal input.
+
 | Key | Mode | Action |
 |---|---|---|
-| `<C-\\>` | Normal / Terminal | Toggle default floating terminal |
+| `<C-\\>` | Normal / Terminal | Toggle default right-side terminal |
+| `<C-h>` | Normal / Terminal | Focus left window (terminal-to-editor when terminal is on the right) |
+| `<C-l>` | Normal / Terminal | Focus right window (editor-to-terminal when terminal is on the right) |
 | `<leader>ft` | Normal | Toggle floating terminal |
 | `<leader>fh` | Normal | Toggle horizontal terminal |
-| `<leader>fv` | Normal | Toggle vertical terminal |
+| `<leader>fv` | Normal | Toggle right-side vertical terminal |
 | `<Esc><Esc>` | Terminal | Leave terminal input mode |
-| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | Terminal | Move to left / lower / upper / right window |
 
 ## Formatting and editing helpers
 
