@@ -1,99 +1,146 @@
-# Neovim Keymap & Plugin Cheatsheet
+# Neovim Keybinding Cheatsheet
 
-A modular, high-performance Neovim setup built around native `vim.pack.add`, system-installed binaries, and conflict-free keybindings.
+Leader key: `<Space>` (normal and visual mode). Key names are case-sensitive: `<leader>h` and `<leader>H` are different.
 
----
+This lists the explicit mappings found in this configuration. Plugin defaults and mappings supplied dynamically by other plugins may not be listed.
 
-## 1. General Editing & Line Movement
+## General editing and navigation
 
-| Keymap | Mode | Action | Notes |
-| :--- | :--- | :--- | :--- |
-| `<A-j>` / `<A-Down>` | Normal | Move current line down | Auto-indents (`==`) |
-| `<A-k>` / `<A-Up>` | Normal | Move current line up | Auto-indents (`==`) |
-| `<A-j>` / `<A-Down>` | Visual | Move selected block down | Preserves selection & auto-indents (`gv=gv`) |
-| `<A-k>` / `<A-Up>` | Visual | Move selected block up | Preserves selection & auto-indents (`gv=gv`) |
+| Key | Mode | Action |
+|---|---|---|
+| `<A-j>` / `<A-Down>` | Normal | Move current line down |
+| `<A-k>` / `<A-Up>` | Normal | Move current line up |
+| `<A-j>` / `<A-Down>` | Visual | Move selection down |
+| `<A-k>` / `<A-Up>` | Visual | Move selection up |
+| `U` | Normal | Redo |
+| `H` / `L` | Normal | Move to left / right split |
+| `<leader>rr` | Normal | Rotate split windows (global mapping; Rust buffers use this chord for Rust runnables instead) |
+| `<leader>re` | Normal | Restart Neovim |
+| `<Esc>` | Normal | Clear search highlights and configured multicursors |
+| `<leader>d` | Normal | Show diagnostic float |
+| `<leader>w` | Normal | Save current file |
+| `<leader>q` | Normal / Terminal | Quit current buffer |
+| `<C-c>` | Normal | Wipe out current buffer |
+| `J` / `K` | Normal | Scroll down / up and center the cursor (Rust buffers use `K` for Rust hover actions instead) |
+| `n` / `N` | Normal | Next / previous search result, centered |
+| `<leader>p` | Normal | Paste without replacing the unnamed register |
+| `<leader>y` | Normal / Visual | Yank to system clipboard |
+| `<leader>Y` | Normal | Yank line to system clipboard |
+| `<leader>v` | Normal | Open a vertical split |
+| `<leader>lv` | Normal | Run `love .` (Love2D) |
 
----
+## File navigation and search
 
-## 2. File Navigation (`oil.nvim` & `telescope.nvim`)
+### Oil
 
-### Oil File Explorer
-| Keymap | Mode | Action | Notes |
-| :--- | :--- | :--- | :--- |
-| `<leader>e` | Normal | Open Oil in current window | Replaces netrw |
-| `<leader>ee` | Normal | Toggle Oil floating window | Runs `:Oil --float` / `toggle_float()` |
-| `-` | Normal (Oil) | Navigate to parent directory | Built-in Oil mapping |
-| `<CR>` | Normal (Oil) | Open file or directory | Built-in Oil mapping |
+| Key | Mode / context | Action |
+|---|---|---|
+| `<leader>e` | Normal | Open Oil file explorer |
+| `<CR>` | Oil buffer | Open selected file or directory |
 
-### Telescope Fuzzy Finder
-| Keymap | Mode | Action |
-| :--- | :--- | :--- |
+Oil is configured with its default keymaps disabled, so only the explicitly configured `<CR>` action is guaranteed here.
+
+### Telescope
+
+| Key | Mode | Action |
+|---|---|---|
 | `<leader>sf` | Normal | Find files |
-| `<leader>sg` | Normal | Live grep across workspace |
+| `<leader>sr` | Normal | Search recently/frequently opened files (frecency) |
+| `<leader>sg` | Normal | Live grep in workspace |
 | `<leader>sb` | Normal | Search open buffers |
+| `<leader>sd` | Normal | Search diagnostics |
 | `<leader>sh` | Normal | Search help tags |
-| `<leader>sd` | Normal | Search workspace diagnostics |
+| `<leader>su` | Normal | Telescope Git status |
+| `<leader>s.` | Normal | Resume last Telescope picker |
+| `<leader>lg` | Normal | Open Lazygit |
 
----
+## LSP and code actions
 
-## 3. Terminal Emulator (`toggleterm.nvim`)
+| Key | Mode | Action |
+|---|---|---|
+| `<leader>ca` | Normal / Visual | Code action (Rust buffers use rustaceanvim's grouped code action) |
+| `<leader>gd` | Normal | Go to definition |
+| `<leader>gD` | Normal | Go to declaration |
+| `<leader>gi` | Normal | Go to implementation |
+| `<leader>gt` | Normal | Go to type definition |
+| `<leader>gr` | Normal | Find references |
+| `<leader>h` | Normal | Show LSP hover documentation |
+| `<leader>rn` | Normal | Rename symbol |
 
-| Keymap | Mode | Action | Notes |
-| :--- | :--- | :--- | :--- |
-| `<C-\>` | Normal / Terminal | Toggle default floating terminal | Keeps background shell alive |
-| `<leader>ft` | Normal | Toggle floating terminal | Rounded border |
-| `<leader>fh` | Normal | Toggle horizontal split terminal | Height: 15 lines |
-| `<leader>fv` | Normal | Toggle vertical split terminal | Width: 40% of columns |
-| `<leader>gg` | Normal | Toggle floating Lazygit | Dedicated git UI session |
-| `<Esc><Esc>` | Terminal | Exit terminal insert mode | Enters Normal mode (`<C-\><C-n>`) |
-| `<C-h/j/k/l>` | Terminal | Navigate between split windows | Seamless window switching |
+## Completion (Blink)
 
----
+| Key | Mode / context | Action |
+|---|---|---|
+| `<Tab>` | Insert, completion menu | Accept selected completion; otherwise fall back to normal Tab behavior |
+| `<C-Space>` | Insert | Show completion menu |
+| `J` / `K` | Insert, completion menu | Select next / previous completion item |
 
-## 4. Testing (`neotest`)
+The completion menu is configured not to open automatically while typing. Documentation popups and signature help are enabled.
 
-Configured with adapters for **Vitest**, **Playwright**, **Go (`neotest-golang`)**, and **Pytest (`neotest-python`)**.
+## Testing (Neotest)
 
-| Keymap | Mode | Action |
-| :--- | :--- | :--- |
-| `<leader>tr` | Normal | Run nearest test under cursor |
-| `<leader>tf` | Normal | Run all tests in current file |
-| `<leader>ts` | Normal | Toggle test summary tree |
-| `<leader>to` | Normal | Open floating test output window |
+| Key | Mode | Action |
+|---|---|---|
+| `<leader>tr` | Normal | Run nearest test |
+| `<leader>tf` | Normal | Run tests in current file |
+| `<leader>ts` | Normal | Toggle test summary |
+| `<leader>to` | Normal | Open test output |
 | `<leader>tO` | Normal | Toggle persistent test output panel |
-| `<leader>tS` | Normal | Stop currently running test |
+| `<leader>tS` | Normal | Stop running test |
 
----
+Configured adapters: Vitest, Playwright, Go, and Pytest.
 
-## 5. LSP, Linting & Formatting (`conform.nvim`)
+## Terminal
 
-### Enabled Native Language Servers (`vim.lsp.enable`)
-* **Web / JS / TS:** `vtsls` (or `ts_ls`), `biome`, `vue_ls` (Volar), `astro`, `jsonls`
-* **Python:** `ruff` (linting & quick-fixes), `ty` (or `pyright` for static type checking)
-* **Systems & Config:** `lua_ls`, `gopls`, `yamlls`, `just`
+| Key | Mode | Action |
+|---|---|---|
+| `<C-\\>` | Normal / Terminal | Toggle default floating terminal |
+| `<leader>ft` | Normal | Toggle floating terminal |
+| `<leader>fh` | Normal | Toggle horizontal terminal |
+| `<leader>fv` | Normal | Toggle vertical terminal |
+| `<Esc><Esc>` | Terminal | Leave terminal input mode |
+| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | Terminal | Move to left / lower / upper / right window |
 
-### Formatting Strategy (`conform.nvim`)
-Formatting runs automatically on save (`format_on_save`) with dynamic root detection (`vim.fs.root`) for Biome projects:
+## Formatting and editing helpers
 
-| Filetype(s) | Primary Formatter / Linter | Fallback (if no `biome.json`) |
-| :--- | :--- | :--- |
-| `javascript`, `typescript`, `jsx`, `tsx`, `vue` | `biome-check` | `eslint_d` $\rightarrow$ `prettierd` |
-| `json`, `jsonc`, `graphql`, `css` | `biome-check` | `prettierd` |
-| `astro`, `html`, `markdown`, `yaml` | `prettierd` | — *(requires `prettier-plugin-astro` for `.astro`)* |
-| `python` | `ruff_organize_imports`, `ruff_format` | — |
-| `lua` | `stylua` | — |
-| `go` | `goimports`, `gofumpt` | — |
-| `sh` | `shfmt` | — |
-| `sql` | `sql_formatter` (`--language postgresql`) | — |
+| Key | Mode | Action |
+|---|---|---|
+| `<leader>m` | Normal | Toggle bracket/line split-join (`mini.splitjoin`) |
 
-| Keymap | Mode | Action |
-| :--- | :--- | :--- |
-| `<leader>mp` | Normal / Visual | Manually format current buffer or visual selection |
+Formatting runs automatically on save through Conform. No explicit manual-format keymap is currently defined in the Lua configuration.
 
----
+## Debugging (DAP)
 
-## 6. System Binary Checklist
+| Key | Mode | Action |
+|---|---|---|
+| `<leader>db` | Normal | Toggle breakpoint |
+| `<leader>dc` | Normal | Continue / start debugging |
+| `<leader>do` | Normal | Step over |
+| `<leader>di` | Normal | Step into |
+| `<leader>dt` | Normal | Debug nearest Go test |
 
-Ensure the following CLI tools and language servers are installed on your system `PATH`:
-* **Formatters & Linters:** `biome`, `stylua`, `prettierd`, `eslint_d`, `ruff`, `goimports`, `gofumpt`, `shfmt`, `sql-formatter`
-* **Language Servers:** `@vtsls/language-server` (or `typescript-language-server`), `@biomejs/biome`, `@vue/language-server`, `@astrojs/language-server`, `ty` (or `pyright`), `lua-language-server`, `gopls`, `yaml-language-server`, `vscode-langservers-extracted`
+## Git diff view
+
+| Key | Mode / context | Action |
+|---|---|---|
+| `<leader>zd` | Normal | Open Zdiff |
+| `<CR>` | Zdiff buffer | Open diff item |
+| `<Tab>` | Zdiff buffer | Toggle diff view |
+| `R` | Zdiff buffer | Refresh diff |
+| `m` | Zdiff buffer | Toggle comparison against `main` / working changes |
+| `q` | Zdiff buffer | Close diff buffer |
+
+## Rust (Rust buffers only)
+
+| Key | Mode | Action |
+|---|---|---|
+| `<leader>rr` | Normal | Open Rust runnables |
+| `<leader>rt` | Normal | Open Rust testables |
+| `<leader>ca` | Normal | Rust grouped code actions |
+| `K` | Normal | Rust hover actions |
+
+These are buffer-local mappings, so they override the global `<leader>rr`, `<leader>ca`, and `K` mappings only in Rust buffers.
+
+## Harpoon
+
+No Harpoon configuration or keybindings are currently present in the repository. Add them to the cheatsheet after installing and configuring the plugin.
