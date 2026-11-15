@@ -1,6 +1,18 @@
 -- Disable Space bar since it will be used as the leader key
 vim.keymap.set({ "n", "v" }, "<leader>", "<nop>", { desc = "Disable leader key default" })
 
+-- Move lines / visual blocks in Normal mode
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
+vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
+vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
+
+-- Move highlighted selection up/down in Visual mode
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
+
 -- Redo remap
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 

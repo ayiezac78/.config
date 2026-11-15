@@ -4,7 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/rachartier/tiny-code-action.nvim" },
 })
 
-vim.lsp.enable({ "lua_ls", "ts_ls", "jsonls", "yamlls", "gopls", "just" })
+vim.lsp.enable({ "lua_ls", "ts_ls", "jsonls", "yamlls", "gopls", "just", "biome", "ty", "ruff", "vue_ls" })
 
 require("tiny-code-action").setup({
 	picker = {

@@ -1,10 +1,11 @@
 -- highlight yank
+local yank_highlighter = vim.hl.hl_op or vim.hl.on_yank or vim.highlight.on_yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
-	pattern = "*",
+	group = vim.api.nvim_create_augroup("kickstart-highlight- yank", { clear = true }),
+	-- pattern = "*",
 	desc = "highlight selection on yank",
 	callback = function()
-		vim.hl.hl_op({ timeout = 200, on_visual = true })
+		yank_highlighter({ higroup = "IncSearch", timeout = 200, on_visual = true })
 	end,
 })
 

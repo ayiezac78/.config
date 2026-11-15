@@ -42,6 +42,7 @@ require("conform").setup({
 		javascriptreact = javascript_formatters,
 		typescript = javascript_formatters,
 		typescriptreact = javascript_formatters,
+    vue = javascript_formatters,
 
 		-- biome-aware so two tools don't fight over the same project
 		json = prettier_or_biome,
@@ -57,6 +58,7 @@ require("conform").setup({
 		go = { "goimports", "gofumpt" },
 		sh = { "shfmt" },
 		sql = { "sql_formatter" },
+		python = { "ruff_organize_imports", "ruff_format" },
 	},
 
 	formatters = {
