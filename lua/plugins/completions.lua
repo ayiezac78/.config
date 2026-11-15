@@ -28,20 +28,17 @@ require("blink.cmp").setup({
 	},
 	fuzzy = {
 		implementation = "rust",
-		-- prebuilt_binaries = {
-		-- 	download = true,
-		-- 	force_version = "v1.10.0",
-		-- },
 	},
 	completion = {
 		ghost_text = {
 			enabled = true,
 		},
 		menu = {
-			auto_show = false,
+			auto_show = true,
 		},
 		documentation = {
 			auto_show = true,
+			auto_show_delay_ms = 500,
 		},
 	},
 	cmdline = {

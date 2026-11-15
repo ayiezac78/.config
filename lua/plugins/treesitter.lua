@@ -4,6 +4,7 @@ vim.pack.add({
 })
 
 local languages = {
+	"astro",
 	"bash",
 	"css",
 	"diff",
@@ -22,11 +23,13 @@ local languages = {
 	"luap",
 	"markdown",
 	"markdown_inline",
+	"python",
 	"query",
 	"tsx",
 	"typescript",
 	"vim",
 	"vimdoc",
+	"vue",
 	"yaml",
 }
 
