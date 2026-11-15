@@ -38,11 +38,12 @@ require("conform").setup({
 		lua = { "stylua" },
 
 		-- biome in biome projects, otherwise eslint_d + prettierd
-		javascript = javascript_formatters,
-		javascriptreact = javascript_formatters,
-		typescript = javascript_formatters,
-		typescriptreact = javascript_formatters,
-    vue = javascript_formatters,
+		javascript = project_formatters,
+		javascriptreact = project_formatters,
+		typescript = project_formatters,
+		typescriptreact = project_formatters,
+		vue = project_formatters,
+		astro = project_formatters,
 
 		-- biome-aware so two tools don't fight over the same project
 		json = prettier_or_biome,
