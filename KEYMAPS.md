@@ -141,6 +141,14 @@ Formatting runs automatically on save through Conform. No explicit manual-format
 
 These are buffer-local mappings, so they override the global `<leader>rr`, `<leader>ca`, and `K` mappings only in Rust buffers.
 
-## Harpoon
+## Harpoon (after adding the suggested Harpoon config)
 
-No Harpoon configuration or keybindings are currently present in the repository. Add them to the cheatsheet after installing and configuring the plugin.
+| Key | Mode | Action |
+|---|---|---|
+| `<leader>ha` | Normal | Add current file to Harpoon list |
+| `<leader>hh` | Normal | Open Harpoon quick menu |
+| `<leader>1`–`<leader>4` | Normal | Jump to Harpoon item 1–4 |
+| `<leader>hp` | Normal | Go to previous Harpoon item |
+| `<leader>hn` | Normal | Go to next Harpoon item |
+
+These are the mappings from the suggested Harpoon setup; Harpoon itself is not yet configured in the repository, so these shortcuts will work only after you add that plugin configuration and load it from `lua/plugins/init.lua`.
