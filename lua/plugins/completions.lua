@@ -1,7 +1,18 @@
+vim.api.nvim_create_autocmd("PackChanged", {
+	callback = function(ev)
+		local name, kind = ev.data.spec.name, ev.data.kind
+		if (name == "blink.cmp" or name == "blink.lib") and (kind == "install" or kind == "update") then
+			vim.cmd.packadd("blink.lib")
+			vim.cmd.packadd("blink.cmp")
+			require("blink.cmp").build():pwait()
+		end
+	end,
+})
+
 vim.pack.add({
-  "https://github.com/saghen/blink.lib",
-	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*") },
-	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	"https://github.com/saghen/blink.cmp",
+	"https://github.com/saghen/blink.lib",
+	"https://github.com/rafamadriz/friendly-snippets",
 })
 
 require("blink.cmp").setup({
@@ -16,7 +27,11 @@ require("blink.cmp").setup({
 		["K"] = { "select_prev", "fallback" },
 	},
 	fuzzy = {
-		implementation = "lua",
+		implementation = "rust",
+		-- prebuilt_binaries = {
+		-- 	download = true,
+		-- 	force_version = "v1.10.0",
+		-- },
 	},
 	completion = {
 		ghost_text = {

@@ -11,21 +11,12 @@ local biome_config = {
 	".biome.jsonc",
 }
 
--- use biome if the project has a biome config, else the given fallback
-local function project_formatters(bufnr, fallback)
+-- json/css/graphql: biome in biome projects, prettierd otherwise
+local function prettier_or_biome(bufnr)
 	if vim.fs.root(bufnr, biome_config) then
 		return { "biome-check" }
 	end
-	return fallback
-end
-
--- eslint_d then prettierd (eslint_d is skipped without an eslint config)
-local function javascript_formatters(bufnr)
-	return project_formatters(bufnr, { "eslint_d", "prettierd" })
-end
-
-local function prettier_or_biome(bufnr)
-	return project_formatters(bufnr, { "prettierd" })
+	return { "prettierd" }
 end
 
 require("conform").setup({
@@ -37,13 +28,13 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 
-		-- biome in biome projects, otherwise eslint_d + prettierd
-		javascript = project_formatters,
-		javascriptreact = project_formatters,
-		typescript = project_formatters,
-		typescriptreact = project_formatters,
-		vue = project_formatters,
-		astro = project_formatters,
+		-- biome everywhere for js/ts
+		javascript = { "biome-check" },
+		javascriptreact = { "biome-check" },
+		typescript = { "biome-check" },
+		typescriptreact = { "biome-check" },
+		vue = { "biome-check" },
+		astro = { "biome-check" },
 
 		-- biome-aware so two tools don't fight over the same project
 		json = prettier_or_biome,
@@ -63,12 +54,15 @@ require("conform").setup({
 	},
 
 	formatters = {
-		-- only run when an eslint config exists up the tree
-		eslint_d = {
-			require_cwd = true,
-		},
 		sql_formatter = {
 			prepend_args = { "--language", "postgresql" },
 		},
 	},
+})
+
+-- biome LSP for linting, attached in every js/ts project (not just ones with biome.json)
+vim.lsp.config("biome", {
+	root_dir = function(bufnr, on_dir)
+		on_dir(vim.fs.root(bufnr, { "biome.json", "biome.jsonc", "package.json", ".git" }) or vim.fn.getcwd())
+	end,
 })
