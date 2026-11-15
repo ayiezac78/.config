@@ -175,6 +175,10 @@
       "src": "https://github.com/mrcjkb/rustaceanvim",
       "version": "9.0.0 - 10.0.0"
     },
+    "rustowl": {
+      "rev": "a82ccfade3edd3280c0221e4d45fe739c15968fc",
+      "src": "https://github.com/cordx56/rustowl"
+    },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"

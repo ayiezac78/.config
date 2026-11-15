@@ -4,6 +4,7 @@ vim.pack.add({
 		version = vim.version.range("^9"),
 	},
 	"https://github.com/saecki/crates.nvim",
+	"https://github.com/cordx56/rustowl",
 })
 
 vim.g.rustaceanvim = {
@@ -18,4 +19,9 @@ vim.g.rustaceanvim = {
 	},
 }
 
+-- rustowl
+require("rustowl").setup({
+	auto_attach = true,
+	auto_enable = true,
+})
 require("crates").setup()
