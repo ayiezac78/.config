@@ -34,7 +34,7 @@ require("blink.cmp").setup({
 			enabled = true,
 		},
 		menu = {
-			auto_show = true,
+			auto_show = false,
 		},
 		documentation = {
 			auto_show = true,
