@@ -22,6 +22,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+  {src = "https://github.com/jesseduffield/lazygit.nvim"},
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
@@ -106,3 +107,4 @@ vim.keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { silent = t
 vim.keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { silent = true })
 vim.keymap.set("n", "<leader>su", "<cmd>Telescope git_status<cr>", { silent = true })
 vim.keymap.set("n", "<leader>s.", "<cmd>Telescope resume<cr>", { silent = true })
+vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", {silent=true, desc="Open lazygit"})
