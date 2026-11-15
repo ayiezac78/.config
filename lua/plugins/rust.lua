@@ -3,6 +3,7 @@ vim.pack.add({
 		src = "https://github.com/mrcjkb/rustaceanvim",
 		version = vim.version.range("^9"),
 	},
+	"https://github.com/saecki/crates.nvim",
 })
 
 vim.g.rustaceanvim = {
@@ -16,3 +17,5 @@ vim.g.rustaceanvim = {
 		},
 	},
 }
+
+require("crates").setup()
