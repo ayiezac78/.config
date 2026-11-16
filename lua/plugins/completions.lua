@@ -31,10 +31,10 @@ require("blink.cmp").setup({
 	},
 	completion = {
 		ghost_text = {
-			enabled = true,
+			enabled = false,
 		},
 		menu = {
-			auto_show = false,
+			auto_show = true,
 		},
 		documentation = {
 			auto_show = true,
