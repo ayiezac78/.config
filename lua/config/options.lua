@@ -38,8 +38,10 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 
-vim.o.wrap = false -- disable wrapping
+vim.o.wrap = true -- disable wrapping
 vim.o.breakindent = true -- prevent line wrapping
+vim.opt.linebreak = true
+vim.opt.showbreak = "↪ "
 vim.opt.fillchars = { eob = " " }
 
 vim.diagnostic.config({

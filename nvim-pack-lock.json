@@ -248,6 +248,10 @@
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "https://github.com/tpope/vim-fugitive"
     },
+    "wrapping.nvim": {
+      "rev": "0e25723cef7cd49f4e267e33ba4afbb2e5b63fff",
+      "src": "https://github.com/andrewferrier/wrapping.nvim"
+    },
     "zdiff.nvim": {
       "rev": "2fed32c25c99be11b743f5c984f482e974d8ecf8",
       "src": "https://github.com/martindur/zdiff.nvim"
