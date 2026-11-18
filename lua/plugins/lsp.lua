@@ -8,6 +8,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"ts_ls",
 	"jsonls",
+	"tsc",
 	"yamlls",
 	"gopls",
 	"biome",
