@@ -4,7 +4,7 @@ vim.pack.add({
 
 local lint = require("lint")
 lint.linters_by_ft = {
-	dockerfile = { " hadolint" },
+	dockerfile = { "hadolint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
